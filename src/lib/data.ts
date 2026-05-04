@@ -105,7 +105,7 @@ export function updateClient(id: string, updates: Partial<Client>): Client | nul
   const old = { ...clients[idx] }
   const changeEntries = Object.keys(updates)
     .filter(k => k !== 'updatedAt' && k !== 'changelog')
-    .map(k => `${k}: ${JSON.stringify((old as Record<string,unknown>)[k])} → ${JSON.stringify((updates as Record<string,unknown>)[k])}`)
+    .map(k => `${k}: ${JSON.stringify((old as unknown as Record<string,unknown>)[k])} → ${JSON.stringify((updates as unknown as Record<string,unknown>)[k])}`)
   clients[idx] = { ...clients[idx], ...updates, updatedAt: new Date().toISOString() }
   if (!clients[idx].changelog) clients[idx].changelog = []
   if (changeEntries.length) {
@@ -164,7 +164,7 @@ export function updateProject(id: string, updates: Partial<Project>): Project | 
   const old = { ...projects[idx] }
   const changeEntries = Object.keys(updates)
     .filter(k => k !== 'updatedAt' && k !== 'timeline' && k !== 'changelog')
-    .map(k => `${k}: ${JSON.stringify((old as Record<string,unknown>)[k])} → ${JSON.stringify((updates as Record<string,unknown>)[k])}`)
+    .map(k => `${k}: ${JSON.stringify((old as unknown as Record<string,unknown>)[k])} → ${JSON.stringify((updates as unknown as Record<string,unknown>)[k])}`)
   projects[idx] = { ...projects[idx], ...updates, updatedAt: new Date().toISOString() }
   if (!projects[idx].changelog) projects[idx].changelog = []
   if (changeEntries.length) {

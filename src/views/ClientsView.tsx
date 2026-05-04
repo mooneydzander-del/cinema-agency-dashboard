@@ -251,8 +251,8 @@ export default function ClientsView() {
       list = list.filter(c => [c.name, c.businessName, c.email].some(f => (f||'').toLowerCase().includes(q)))
     }
     list.sort((a, b) => {
-      const av = (a as Record<string,unknown>)[sortCol] ?? ''
-      const bv = (b as Record<string,unknown>)[sortCol] ?? ''
+      const av = (a as unknown as Record<string,unknown>)[sortCol] ?? ''
+      const bv = (b as unknown as Record<string,unknown>)[sortCol] ?? ''
       const cmp = String(av).localeCompare(String(bv))
       return sortDir === 'asc' ? cmp : -cmp
     })

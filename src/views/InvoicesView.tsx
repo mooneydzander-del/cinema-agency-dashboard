@@ -110,7 +110,7 @@ export default function InvoicesView() {
     else if (filter==='Subscriptions') list=list.filter(i=>i.type==='Monthly')
     if (search) { const q=search.toLowerCase(); list=list.filter(i=>[i.invoiceNumber,clientName(i.clientId)].some(f=>f.toLowerCase().includes(q))) }
     list.sort((a,b) => {
-      const av=(a as Record<string,unknown>)[sortCol]??''; const bv=(b as Record<string,unknown>)[sortCol]??''
+      const av=(a as unknown as Record<string,unknown>)[sortCol]??''; const bv=(b as unknown as Record<string,unknown>)[sortCol]??''
       return sortDir==='asc' ? String(av).localeCompare(String(bv)) : String(bv).localeCompare(String(av))
     })
     return list
