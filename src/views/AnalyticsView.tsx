@@ -42,7 +42,7 @@ export default function AnalyticsView() {
             <span className="flex items-center gap-1.5 text-[11px] text-[#71717a]"><span className="inline-block w-5 h-0.5 bg-[#fbbf24] rounded" />Actual MRR</span>
             <span className="flex items-center gap-1.5 text-[11px] text-[#71717a]"><span className="inline-block w-5 h-0.5 bg-[#52525b] rounded" />Forecast</span>
           </div>
-          {data.mrrHistory.some(d => d.mrr || d.forecast)
+          {data.mrrHistory.some(d => d.mrr || ('forecast' in d && d.forecast))
             ? <LineChartSimple data={data.mrrHistory} lines={[{ dataKey:'mrr', color:'#fbbf24' },{ dataKey:'forecast', color:'#52525b', dashed:true }]} height={220} formatValue={v=>fmtCurrency(v)} />
             : <EmptyState icon="📈" title="No MRR data yet" />
           }
