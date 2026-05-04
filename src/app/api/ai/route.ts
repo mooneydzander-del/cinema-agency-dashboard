@@ -8,10 +8,10 @@ export async function POST(req: NextRequest) {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
-        'Authorization': `Bearer ${process.env.NEXT_PUBLIC_OPENAI_API_KEY}`,
+        'Authorization': `Bearer ${process.env.OPENAI_API_KEY}`,
       },
       body: JSON.stringify({
-        model: 'gpt-5.4-mini',
+        model: 'gpt-4o-mini',
         messages: [
           { role: 'system', content: system },
           ...messages,
@@ -21,6 +21,13 @@ export async function POST(req: NextRequest) {
     })
 
     const data = await response.json()
+    console.log('OpenAI raw response:', JSON.stringify(data))
+
+    if (!response.ok) {
+      const apiError = data?.error?.message ?? `OpenAI error ${response.status}`
+      return NextResponse.json({ error: apiError }, { status: response.status })
+    }
+
     const content = data.choices[0].message.content
     return NextResponse.json({ content })
   } catch (error: unknown) {
