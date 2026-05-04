@@ -27,7 +27,7 @@ const config: Config = {
         'accent-muted': '#fcd34d',
       },
       fontFamily: {
-        sans: ['-apple-system', 'BlinkMacSystemFont', '"Helvetica Neue"', 'Arial', 'sans-serif'],
+        sans: ['Inter', '-apple-system', 'BlinkMacSystemFont', '"Helvetica Neue"', 'Arial', 'sans-serif'],
       },
       borderRadius: {
         DEFAULT: '6px',
